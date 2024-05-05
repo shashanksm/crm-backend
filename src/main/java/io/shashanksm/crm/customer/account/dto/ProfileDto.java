@@ -1,4 +1,4 @@
-package io.shashanksm.crm.customer.profile.dto;
+package io.shashanksm.crm.customer.account.dto;
 
 public class ProfileDto {
 
