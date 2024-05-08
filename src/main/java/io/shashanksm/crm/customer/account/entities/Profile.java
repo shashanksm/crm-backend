@@ -2,15 +2,19 @@ package io.shashanksm.crm.customer.account.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "profile")
+@Table(name = "profile_t")
 public class Profile {
 	
 	@Id
@@ -85,31 +89,8 @@ public class Profile {
 		this.primaryContactVerified = primaryContactVerified;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, emailVerified, id, name, primaryContact, primaryContactVerified);
-	}
+	
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Profile other = (Profile) obj;
-		return Objects.equals(email, other.email) && emailVerified == other.emailVerified
-				&& Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Objects.equals(primaryContact, other.primaryContact)
-				&& primaryContactVerified == other.primaryContactVerified;
-	}
-
-	@Override
-	public String toString() {
-		return "Profile [id=" + id + ", name=" + name + ", email=" + email + ", primaryContact=" + primaryContact
-				+ ", emailVerified=" + emailVerified + ", primaryContactVerified=" + primaryContactVerified + "]";
-	}
     
     
     

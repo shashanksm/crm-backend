@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_t")
 public class Order {
 	
 	@Id
@@ -36,12 +36,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public String getOrderType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setOrderType(String orderType) {
-		this.type = orderType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getStatus() {

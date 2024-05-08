@@ -2,15 +2,18 @@ package io.shashanksm.crm.customer.account.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "address")
+@Table(name = "address_t")
 public class Address {
 	
 	@Id
@@ -26,6 +29,7 @@ public class Address {
 	
 	@Column(name = "address_line_1")
 	private String addressLine1;
+	
 	@Column(name = "address_line_2")
 	private String addressLine2;
 	
@@ -37,6 +41,10 @@ public class Address {
 	
 	@Column(name = "postal_code")
 	private String postalCode;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "account", referencedColumnName = "id")
+	private Account account;
 
 	public Address() {
 		super();
@@ -104,6 +112,24 @@ public class Address {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+	
+	
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	@Override
