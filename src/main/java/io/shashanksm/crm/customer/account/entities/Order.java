@@ -1,13 +1,15 @@
 package io.shashanksm.crm.customer.account.entities;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +29,10 @@ public class Order {
 
 	@Column(name = "created")
 	private LocalDateTime created;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "account", referencedColumnName = "id")
+	private Account account;
 
 	public Long getId() {
 		return id;
@@ -64,22 +70,13 @@ public class Order {
 		super();
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(created, id, type, status);
+	
+	public Account getAccount() {
+		return account;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Order other = (Order) obj;
-		return Objects.equals(created, other.created) && Objects.equals(id, other.id)
-				&& Objects.equals(type, other.type) && Objects.equals(status, other.status);
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	@Override
