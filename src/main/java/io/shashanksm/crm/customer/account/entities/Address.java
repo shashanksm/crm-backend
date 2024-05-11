@@ -116,14 +116,6 @@ public class Address {
 	
 	
 
-	public String getUnit() {
-		return unit;
-	}
-
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
-
 	public Account getAccount() {
 		return account;
 	}

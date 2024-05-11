@@ -1,9 +1,15 @@
 package io.shashanksm.crm.customer.account.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import io.shashanksm.crm.customer.account.entities.Account;
+import io.shashanksm.crm.customer.account.entities.Preference;
+import io.shashanksm.crm.customer.account.entities.Profile;
 
 public class AccountDto {
 
@@ -22,6 +28,8 @@ public class AccountDto {
 	private Map<String, String> preferences;
 
 	private LocalDateTime lastLogin;
+	
+	private String status;
 
 	public Long getId() {
 		return id;
@@ -87,6 +95,16 @@ public class AccountDto {
 		this.lastLogin = lastLogin;
 	}
 
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public AccountDto(Long id, String type, ProfileDto profile, List<AddressDto> adresses, List<OrderDto> orders,
 			LocalDateTime created, Map<String, String> preferences, LocalDateTime lastLogin) {
 		super();
@@ -123,13 +141,53 @@ public class AccountDto {
 				&& Objects.equals(orders, other.orders) && Objects.equals(preferences, other.preferences)
 				&& Objects.equals(profile, other.profile) && Objects.equals(type, other.type);
 	}
-
+	
+	
+	
 	@Override
 	public String toString() {
 		return "AccountDto [id=" + id + ", type=" + type + ", profile=" + profile + ", adresses=" + adresses
 				+ ", orders=" + orders + ", created=" + created + ", preferences=" + preferences + ", lastLogin="
-				+ lastLogin + "]";
+				+ lastLogin + ", status=" + status + "]";
 	}
 
 	// todo toEntity and fromEntity
+	public Account toEntity() {
+		Account account = new Account();
+		
+		account.setCreated(created);
+		account.setId(id);
+		account.setLastLogin(lastLogin);
+		//profile, address & orders need to be set via profile-repository's methods
+		account.setStatus(status);
+		account.setType(type);
+		
+		List<Preference> aPreferences = new ArrayList<>();
+		this.preferences.forEach((k,v)->{
+			aPreferences.add(new Preference(k, v));
+		});
+		
+		account.setPreferences(aPreferences);
+		
+		return account;
+	}
+	
+	public static AccountDto fromEntity(Account account) {
+		AccountDto accountDto = new AccountDto();
+		
+		accountDto.setCreated(account.getCreated());
+		accountDto.setId(account.getId());
+		accountDto.setLastLogin(account.getLastLogin());
+		accountDto.setStatus(account.getStatus());
+		accountDto.setType(account.getType());
+		
+		Map<String, String> dtoPreferences = new HashMap<>();
+		
+		account.getPreferences().forEach((preference)->{
+			dtoPreferences.put(preference.getKey(), preference.getValue());
+		});
+		accountDto.setPreferences(dtoPreferences);
+		
+		return accountDto;
+	}
 }

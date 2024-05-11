@@ -1,6 +1,7 @@
 package io.shashanksm.crm.customer.account.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -37,6 +39,10 @@ public class Account {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinTable(name = "account_profile_t", joinColumns = @JoinColumn(name = "account"), inverseJoinColumns = @JoinColumn(name = "profile"))
 	private Profile profile;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "account", referencedColumnName = "id")
+	private List<Preference> preferences;
 
 	public Account() {
 		super();
@@ -90,6 +96,14 @@ public class Account {
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
+	}
+
+	public List<Preference> getPreferences() {
+		return preferences;
+	}
+
+	public void setPreferences(List<Preference> preferences) {
+		this.preferences = preferences;
 	}
 	
 	

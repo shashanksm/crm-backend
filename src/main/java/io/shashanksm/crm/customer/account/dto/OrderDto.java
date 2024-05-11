@@ -3,6 +3,8 @@ package io.shashanksm.crm.customer.account.dto;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import io.shashanksm.crm.customer.account.entities.Order;
+
 public class OrderDto {
 	
 	private Long id;
@@ -80,6 +82,23 @@ public class OrderDto {
 				&& Objects.equals(orderType, other.orderType) && Objects.equals(status, other.status);
 	}
 	
+	public Order toEntity() {
+		Order order = new Order();
+		order.setCreated(created);
+		order.setStatus(status);
+		order.setId(id);
+		order.setType(orderType);
+		order.setAccount(null);
+		return order;
+	}
 	
+	public static OrderDto fromEntity(Order order) {
+		OrderDto orderDto = new OrderDto();
+		orderDto.setCreated(order.getCreated());
+		orderDto.setId(order.getId());
+		orderDto.setOrderType(order.getType());
+		orderDto.setStatus(order.getStatus());
+		return orderDto;
+	}
 	
 }

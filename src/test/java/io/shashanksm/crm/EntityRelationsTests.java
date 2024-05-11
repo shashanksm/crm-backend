@@ -3,6 +3,7 @@ package io.shashanksm.crm;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 import io.shashanksm.crm.customer.account.entities.Account;
 import io.shashanksm.crm.customer.account.entities.Address;
 import io.shashanksm.crm.customer.account.entities.Order;
+import io.shashanksm.crm.customer.account.entities.Preference;
 import io.shashanksm.crm.customer.account.entities.Profile;
 import io.shashanksm.crm.customer.account.repositories.AccountsRepository;
 import io.shashanksm.crm.customer.account.repositories.AddressRepository;
@@ -44,7 +46,7 @@ public class EntityRelationsTests {
 
 		this.addressRepository.save(address);
 
-		this.accountsRepository.delete(savedAccount);
+		//this.accountsRepository.delete(savedAccount);
 
 		assertTrue(true);
 	}
@@ -52,7 +54,7 @@ public class EntityRelationsTests {
 	@Test
 	public void shouldCreateOrder() {
 
-		Account account = accountsRepository.findById(28L).get();
+		Account account = accountsRepository.findById(33L).get();
 
 		Order order = buildTestOrder();
 		
@@ -98,6 +100,10 @@ public class EntityRelationsTests {
 		profile.setPrimaryContactVerified(true);
 
 		newTestAccount.setProfile(profile);
+		
+		newTestAccount.setPreferences(Arrays.asList(new Preference("test", "test")));
+		newTestAccount.setPreferences(Arrays.asList(new Preference("test", "test")));
+		newTestAccount.setPreferences(Arrays.asList(new Preference("test", "test")));
 
 		return newTestAccount;
 	}

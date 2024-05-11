@@ -2,6 +2,8 @@ package io.shashanksm.crm.customer.account.dto;
 
 import java.util.Objects;
 
+import io.shashanksm.crm.customer.account.entities.Address;
+
 public class AddressDto {
 	
 	private Long id;
@@ -128,4 +130,31 @@ public class AddressDto {
 	}
 	
 	//TODO toEntity and fromEntity
+	public Address toEntity() {
+		Address address = new Address();
+		address.setAddressLine1(addressLine1);
+		address.setAddressLine2(addressLine2);
+		address.setCity(city);
+		address.setId(id);
+		address.setName(name);
+		address.setPostalCode(postalCode);
+		address.setRegion(region);
+		address.setUnitNumber(unitNumber);
+		
+		return address;
+	}
+	
+	public static AddressDto fromEntity(Address address) {
+		AddressDto addressDto = new AddressDto();
+		
+		addressDto.addressLine1 = address.getAddressLine1();
+		addressDto.addressLine2 = address.getAddressLine2();
+		addressDto.setCity(address.getCity());
+		addressDto.setId(address.getId());
+		addressDto.setName(address.getName());
+		addressDto.setPostalCode(address.getPostalCode());
+		addressDto.setRegion(address.getRegion());
+		addressDto.setUnitNumber(address.getUnitNumber());
+		return addressDto;
+	}
 }

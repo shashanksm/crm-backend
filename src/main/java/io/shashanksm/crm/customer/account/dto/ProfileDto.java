@@ -1,5 +1,7 @@
 package io.shashanksm.crm.customer.account.dto;
 
+import io.shashanksm.crm.customer.account.entities.Profile;
+
 public class ProfileDto {
 
     private Long id;
@@ -114,6 +116,28 @@ public class ProfileDto {
     }
 
     // TODO add toEntity and fromEntity
-
+    public Profile toEntity() {
+    	Profile profile = new Profile();
+    	
+    	profile.setId(id);
+    	profile.setEmail(email);
+    	profile.setEmailVerified(emailVerified);
+    	profile.setName(name);
+    	profile.setPrimaryContact(primaryContact);
+    	profile.setPrimaryContactVerified(primaryContactVerified);
+    	
+    	return profile;
+    }
+    
+    public static ProfileDto fromEntity(Profile profile) {
+    	ProfileDto ret = new ProfileDto();
+    	ret.setEmail(profile.getEmail());
+    	ret.setEmailVerified(profile.isEmailVerified());
+    	ret.setId(profile.getId());
+    	ret.setName(profile.getName());
+    	ret.setPrimaryContact(profile.getPrimaryContact());
+    	ret.setPrimaryContactVerified(profile.isPrimaryContactVerified());
+    	return ret;
+    }
 
 }
