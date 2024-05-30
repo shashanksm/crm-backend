@@ -115,7 +115,6 @@ public class ProfileDto {
         return true;
     }
 
-    // TODO add toEntity and fromEntity
     public Profile toEntity() {
     	Profile profile = new Profile();
     	

@@ -129,7 +129,7 @@ public class AddressDto {
 				+ ", postalCode=" + postalCode + "]";
 	}
 	
-	//TODO toEntity and fromEntity
+
 	public Address toEntity() {
 		Address address = new Address();
 		address.setAddressLine1(addressLine1);

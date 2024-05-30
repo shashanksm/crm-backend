@@ -9,7 +9,6 @@ import java.util.Objects;
 
 import io.shashanksm.crm.customer.account.entities.Account;
 import io.shashanksm.crm.customer.account.entities.Preference;
-import io.shashanksm.crm.customer.account.entities.Profile;
 
 public class AccountDto {
 
