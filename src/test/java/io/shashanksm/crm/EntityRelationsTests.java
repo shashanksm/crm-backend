@@ -101,10 +101,6 @@ public class EntityRelationsTests {
 
 		newTestAccount.setProfile(profile);
 		
-		newTestAccount.setPreferences(Arrays.asList(new Preference("test", "test")));
-		newTestAccount.setPreferences(Arrays.asList(new Preference("test", "test")));
-		newTestAccount.setPreferences(Arrays.asList(new Preference("test", "test")));
-
 		return newTestAccount;
 	}
 

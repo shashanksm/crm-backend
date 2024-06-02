@@ -40,9 +40,6 @@ public class Account {
 	@JoinTable(name = "account_profile_t", joinColumns = @JoinColumn(name = "account"), inverseJoinColumns = @JoinColumn(name = "profile"))
 	private Profile profile;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "account", referencedColumnName = "id")
-	private List<Preference> preferences;
 
 	public Account() {
 		super();
@@ -97,15 +94,5 @@ public class Account {
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
-
-	public List<Preference> getPreferences() {
-		return preferences;
-	}
-
-	public void setPreferences(List<Preference> preferences) {
-		this.preferences = preferences;
-	}
 	
-	
-
 }

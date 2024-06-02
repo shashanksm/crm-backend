@@ -161,13 +161,6 @@ public class AccountDto {
 		account.setStatus(status);
 		account.setType(type);
 		
-		List<Preference> aPreferences = new ArrayList<>();
-		this.preferences.forEach((k,v)->{
-			aPreferences.add(new Preference(k, v));
-		});
-		
-		account.setPreferences(aPreferences);
-		
 		return account;
 	}
 	
@@ -182,9 +175,6 @@ public class AccountDto {
 		
 		Map<String, String> dtoPreferences = new HashMap<>();
 		
-		account.getPreferences().forEach((preference)->{
-			dtoPreferences.put(preference.getKey(), preference.getValue());
-		});
 		accountDto.setPreferences(dtoPreferences);
 		
 		return accountDto;

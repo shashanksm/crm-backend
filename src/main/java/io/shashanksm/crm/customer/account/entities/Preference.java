@@ -23,6 +23,17 @@ public class Preference {
 	
 	@Column(name = "pvalue")
 	private String value;
+	
+	@Column(name = "account")
+	private Long accountId;
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
 
 	public Long getId() {
 		return id;
@@ -52,14 +63,17 @@ public class Preference {
 		super();
 	}
 
+
 	@Override
 	public String toString() {
-		return "Preference [id=" + id + ", key=" + key + ", value=" + value + "]";
+		return "Preference [id=" + id + ", key=" + key + ", value=" + value + ", accountId=" + accountId + "]";
 	}
+	
+	
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, key, value);
+		return Objects.hash(accountId, id, key, value);
 	}
 
 	@Override
@@ -71,7 +85,8 @@ public class Preference {
 		if (getClass() != obj.getClass())
 			return false;
 		Preference other = (Preference) obj;
-		return Objects.equals(id, other.id) && Objects.equals(key, other.key) && Objects.equals(value, other.value);
+		return Objects.equals(accountId, other.accountId) && Objects.equals(id, other.id)
+				&& Objects.equals(key, other.key) && Objects.equals(value, other.value);
 	}
 
 	public Preference(String key, String value) {
@@ -80,6 +95,14 @@ public class Preference {
 		this.key = key;
 		this.value = value;
 	}
+
+	public Preference(String key, String value, Long accountId) {
+		super();
+		this.key = key;
+		this.value = value;
+		this.accountId = accountId;
+	}
+	
 	
 	
 }
